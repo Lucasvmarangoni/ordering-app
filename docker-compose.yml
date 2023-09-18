@@ -1,5 +1,23 @@
 
 services:
+  orders:
+    build:
+      context: .
+      dockerfile: ./apps/orders/Dockerfile
+      target: development
+    command: pnpm run start:dev orders
+    env_file:
+      - ./apps/orders/.env
+    depends_on:
+      - mongodb-primary
+      - mongodb-secondary
+      - mongodb-arbiter
+    volumes:
+      - .:use/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - '3000:3000'
+
   mongodb-primary:
     image: docker.io/bitnami/mongodb:5.0
     environment:
