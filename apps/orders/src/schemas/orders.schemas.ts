@@ -10,7 +10,7 @@ export class Order extends AbstractDocument {
   price: number;
 
   @Prop()
-  phoneNUmber: string;
+  phoneNumber: string;
 }
 
 export const OrderSchema = SchemaFactory.createForClass(Order);
